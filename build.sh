@@ -175,7 +175,7 @@ cp ${CONFIG_DIR}/internal/clients/${PROVIDER_NAME_LOWER}.go ${PROVIDER_DIR}/inte
 
 
 rm -f -R provider-keycloak-github
-git clone https://github.com/corewire/provider-keycloak.git provider-keycloak-github
+git clone https://${AUTH}github.com/corewire/provider-keycloak.git provider-keycloak-github
 # Copy stuff from PROVIDER_DIR to provider-keycloak-github and commit it
 cp -r ${PROVIDER_DIR}/* provider-keycloak-github/
 
