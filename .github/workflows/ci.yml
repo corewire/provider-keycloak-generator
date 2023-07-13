@@ -15,10 +15,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate code
         run: |
+          export AUTH=${{ secrets.GITHUB_TOKEN }}@
           chmod +x build.sh
           ./build.sh
-        with:
-          AUTH: ${{ secrets.GITHUB_TOKEN }}@
+        
 
 
     
