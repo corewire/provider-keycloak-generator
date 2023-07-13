@@ -19,6 +19,7 @@ jobs:
         run: |
           apk update && apk add git bash make curl openssh-client
           go install golang.org/x/tools/cmd/goimports@latest
+          ls -aln ~
           mkdir -p ~/.ssh/
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
           # Create known_hosts
@@ -30,7 +31,7 @@ jobs:
           # Change permissions to known_hosts
           chmod 644 ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chown -R $USER ~/.ssh/
+          chown -R 1001:ntp ~/.ssh/
           # check if ssh key is valid
           ssh-keygen -l -f ~/.ssh/id_rsa
           chmod +x generate.sh
