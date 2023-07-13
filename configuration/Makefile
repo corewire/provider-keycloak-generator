@@ -60,17 +60,17 @@ UPTEST_VERSION = v0.2.1
 # ====================================================================================
 # Setup Images
 
-REGISTRY_ORGS ?= registry.reservix.io/platform/services/crossplane/provider-keycloak
+REGISTRY_ORGS ?= registry.example.com/corewire/provider-keycloak
 IMAGES = $(PROJECT_NAME)
 -include build/makelib/imagelight.mk
 
 # ====================================================================================
 # Setup XPKG
 
-XPKG_REG_ORGS ?= registry.reservix.io/platform/services/crossplane/provider-keycloak
+XPKG_REG_ORGS ?= registry.example.com/corewire/provider-keycloak
 # NOTE(hasheddan): skip promoting on xpkg.upbound.io as channel tags are
 # inferred.
-XPKG_REG_ORGS_NO_PROMOTE ?= registry.reservix.io/platform/services/crossplane/provider-keycloak
+XPKG_REG_ORGS_NO_PROMOTE ?= registry.example.com/corewire/provider-keycloak
 XPKGS = $(PROJECT_NAME)
 -include build/makelib/xpkg.mk
 

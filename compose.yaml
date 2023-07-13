@@ -1,0 +1,13 @@
+services:
+  go:
+    build: .
+    user: "1000"
+    volumes:
+      - ./build.sh:/go/build.sh
+      - ./configuration:/go/configuration
+      - ./buildout:/go/buildout
+      - ./src:/go/src
+
+    command:
+      - sleep
+      - infinity

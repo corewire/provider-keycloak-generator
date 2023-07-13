@@ -15,7 +15,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/terraform"
 
-	"provider-keycloak/apis/v1beta1"
+	"github.com/corewire/apis/v1beta1"
 )
 
 const (

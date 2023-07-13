@@ -173,10 +173,22 @@ fi
 # Copy client
 cp ${CONFIG_DIR}/internal/clients/${PROVIDER_NAME_LOWER}.go ${PROVIDER_DIR}/internal/clients/${PROVIDER_NAME_LOWER}.go
 
-pushd "${PROVIDER_DIR}"
+
+rm -f -R provider-keycloak-github
+git clone git@github.com:corewire/provider-keycloak.git provider-keycloak-github
+# Copy stuff from PROVIDER_DIR to provider-keycloak-github and commit it
+cp -r ${PROVIDER_DIR}/* provider-keycloak-github/
+
+pushd provider-keycloak-github
+git config user.email "github-action@example.com"
+git config user.name "keycloak-provider-generator"
+git add -A
+git commit -m "Update provider"
+git push 
 
 exit 0
 
+pushd "${PROVIDER_DIR}"
 # Dummy user for CI builds to avoid dirty states
 git config user.email "you@example.com"
 git config user.name "Your Name"

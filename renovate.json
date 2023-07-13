@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    "docker:enableMajor",
+    ":disableRateLimiting",
+    ":automergePr",
+    ":automergeRequireAllStatusChecks",
+    ":semanticCommits",
+    ":maintainLockFilesWeekly"
+  ],
+  "labels": ["renovate"],
+  "major": {
+    "labels": ["major", "renovate"]
+  },
+  "minor": {
+    "labels": ["minor", "renovate"]
+  },
+  "patch": {
+    "labels": ["patch", "renovate"]
+  },
+  "pin": {
+    "labels": ["pin", "renovate"]
+  },
+  "pinDigests": false,
+  "recreateClosed": true,
+  "packageRules": [
+    {
+      "updateTypes": ["patch", "pin", "digest", "minor"],
+      "automerge": true
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^build.sh$"],
+      "matchStrings": [
+        "\\s*# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s+[^=]*=(?<currentValue>[^\\s]*)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ]
+}

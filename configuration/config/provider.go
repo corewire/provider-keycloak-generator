@@ -10,16 +10,16 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
-	"provider-keycloak/config/group"
-	"provider-keycloak/config/openidclient"
-	"provider-keycloak/config/realm"
-	"provider-keycloak/config/role"
-	"provider-keycloak/config/mapper"
+	"github.com/corewire/config/group"
+	"github.com/corewire/config/openidclient"
+	"github.com/corewire/config/realm"
+	"github.com/corewire/config/role"
+	"github.com/corewire/config/mapper"
 )
 
 const (
 	resourcePrefix = "keycloak"
-	modulePath     = "provider-keycloak"
+	modulePath     = "github.com/corewire"
 	rootGroup      = "keycloak.crossplane.io"
 )
 
