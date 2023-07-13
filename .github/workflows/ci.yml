@@ -20,6 +20,7 @@ jobs:
           apk update && apk add git bash make curl openssh-client
           go install golang.org/x/tools/cmd/goimports@latest
           mkdir -p ~/.ssh/
+          chown -R $USER ~/.ssh/
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
           # check if ssh key is valid
           ssh-keygen -l -f ~/.ssh/id_rsa
