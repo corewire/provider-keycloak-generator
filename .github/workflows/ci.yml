@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate code
         run: |
+          echo "User: $USER"
           apk update && apk add git bash make curl openssh-client
           go install golang.org/x/tools/cmd/goimports@latest
           mkdir -p ~/.ssh/
@@ -27,12 +28,11 @@ jobs:
           # Add github key to known_hosts
           ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 
           # Change permissions to the private key
-          chmod 400 ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_ed25519
           # Change permissions to known_hosts
           chmod 644 ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chown -R 1001:ntp ~/.ssh/
           # check if ssh key is valid
-          ssh-keygen -l -f ~/.ssh/id_rsa
+          ssh-keygen -l -f ~/.ssh/id_ed25519
           chmod +x generate.sh
           ./generate.sh
