@@ -61,7 +61,7 @@ export ENABLE_CUSTOM_API_NAME=true
 export CUSTOM_API_NAME="${PROVIDER_NAME_LOWER}.crossplane.io"
 
 # Repository name
-export PROJECT_REPO=${PROJECT_NAME}
+export PROJECT_REPO=github.com/corewire/${PROJECT_NAME}
 
 # Terraform provider source
 export TERRAFORM_PROVIDER_SOURCE=mrparkers/keycloak
