@@ -13,15 +13,19 @@ jobs:
     runs-on: ubuntu-22.04
     container: 
       image: golang:1.20-alpine
+      env:
+        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: Generate code
         run: |
           apk update && apk add git bash make curl openssh-client
           go install golang.org/x/tools/cmd/goimports@latest
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
 
+          mkdir -p ~/.ssh/
+          echo "$SSH_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ls -la ~/.ssh/
+          
           chmod +x generate.sh
           ./generate.sh
