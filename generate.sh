@@ -175,11 +175,18 @@ cp ${CONFIG_DIR}/internal/clients/${PROVIDER_NAME_LOWER}.go ${PROVIDER_DIR}/inte
 
 rm -f -R provider-keycloak-github
 git clone git@github.com:corewire/provider-keycloak.git  provider-keycloak-github
-# Copy stuff from PROVIDER_DIR to provider-keycloak-github and commit it
-cp -r ${PROVIDER_DIR}/* provider-keycloak-github/
+
+# Copy everything from PROVIDER_DIR to provider-keycloak-github 
+rm -f -R provider-keycloak-github/*
+cp -r ${PROVIDER_DIR}/* provider-keycloak-github
+
 pushd provider-keycloak-github
 rm -f -R config/null || true
 rm -f -R apis/null || true
+
+make submodules
+make generate
+
 git config user.email "github-action@example.com"
 git config user.name "keycloak-provider-generator"
 # check if there are any changes

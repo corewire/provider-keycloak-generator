@@ -11,10 +11,14 @@ jobs:
   # Execute build.sh
   generate_code:
     runs-on: ubuntu-22.04
+    container: 
+      image: golang:1.20-alpine
     steps:
       - uses: actions/checkout@v2
       - name: Generate code
         run: |
+          apk update && apk add git bash make curl
+          go install golang.org/x/tools/cmd/goimports@latest
           mkdir -p ~/.ssh/
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
