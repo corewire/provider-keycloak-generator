@@ -23,6 +23,9 @@ jobs:
           go install golang.org/x/tools/cmd/goimports@latest
 
           mkdir -p ~/.ssh/
+          touch ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
           echo "$SSH_DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           chown -R 1001:ntp ~/.ssh/
