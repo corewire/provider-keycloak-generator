@@ -17,6 +17,8 @@ jobs:
         run: |
           chmod +x build.sh
           ./build.sh
+        with:
+          AUTH: ${{ secrets.GITHUB_TOKEN }}
 
 
     
