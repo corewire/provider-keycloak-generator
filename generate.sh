@@ -179,6 +179,7 @@ git clone git@github.com:corewire/provider-keycloak.git  provider-keycloak-githu
 cp -r ${PROVIDER_DIR}/* provider-keycloak-github/
 pushd provider-keycloak-github
 rm -f -R config/null || true
+rm -f -R apis/null || true
 git config user.email "github-action@example.com"
 git config user.name "keycloak-provider-generator"
 # check if there are any changes
