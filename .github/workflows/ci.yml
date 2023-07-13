@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate code
         run: |
-          apk update && apk add git bash make curl
+          apk update && apk add git bash make curl openssh-client
           go install golang.org/x/tools/cmd/goimports@latest
           mkdir -p ~/.ssh/
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
