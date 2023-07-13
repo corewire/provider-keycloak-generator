@@ -16,14 +16,15 @@ jobs:
       options: --user root
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          apk update && apk add git bash make curl openssh-client
+          go install golang.org/x/tools/cmd/goimports@latest
       - uses: PhutureCorp/container-ssh-agent@v0.0.1
         with:
           ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
           home-dir: "/root"
       - name: Generate code
         run: |
-          # Install dependencies
-          apk update && apk add git bash make curl
-          go install golang.org/x/tools/cmd/goimports@latest
           chmod +x generate.sh
           ./generate.sh
