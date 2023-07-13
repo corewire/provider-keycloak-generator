@@ -28,7 +28,7 @@ jobs:
           # Add github key to known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           # Change permissions to the private key
-          chmod 600 ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
           # Change permissions to known_hosts
           chmod 644 ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
