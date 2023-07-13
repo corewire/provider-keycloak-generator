@@ -25,6 +25,7 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          chown -R 1001:ntp ~/.ssh/
           ls -la ~/.ssh/
           
           chmod +x generate.sh
