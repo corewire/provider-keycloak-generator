@@ -11,17 +11,19 @@ jobs:
   # Execute build.sh
   generate_code:
     runs-on: ubuntu-22.04
+    container: 
+      image: golang:1.20-alpine
+      options: --user root
     steps:
       - uses: actions/checkout@v2
+      - uses: PhutureCorp/container-ssh-agent@v0.0.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
+          home-dir: "/root"
       - name: Generate code
         run: |
           # Install dependencies
-          apt-get update
-          apt-get install -y git curl go make
+          apk update && apk add git bash make curl
           go install golang.org/x/tools/cmd/goimports@latest
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
           chmod +x generate.sh
           ./generate.sh
